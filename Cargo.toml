@@ -1,0 +1,21 @@
+[package]
+name = "marvelmind-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["wyzdwdz <wyzdwdz@gmail.com>"]
+description = "Marvelmind api wrapper"
+keywords = ["marvelmind"]
+license = "MIT"
+repository = "https://github.com/wyzdwdz/marvelmind-rs"
+
+[dependencies]
+zerocopy = "0.8"
+zerocopy-derive = "0.8"
+
+[lib]
+name = "marvelmind"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mmtest"
+path = "example/mmtest.rs"
