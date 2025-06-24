@@ -1,5 +1,5 @@
 [package]
-name = "marvelmind-rs"
+name = "marvelmind"
 version = "0.1.0"
 edition = "2021"
 authors = ["wyzdwdz <wyzdwdz@gmail.com>"]
@@ -11,10 +11,6 @@ repository = "https://github.com/wyzdwdz/marvelmind-rs"
 [dependencies]
 zerocopy = "0.8"
 zerocopy-derive = "0.8"
-
-[lib]
-name = "marvelmind"
-path = "src/lib.rs"
 
 [[bin]]
 name = "mmtest"
