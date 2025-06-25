@@ -157,7 +157,7 @@ impl DeviceList {
         for device in &mut self.devices {
             let coord = &last_locations.coordinates;
             for idx in 0..coord.len() {
-                if coord[idx].address == device.address {
+                if coord[idx].address == device.address && coord[idx].q <= 100 {
                     device.x = coord[idx].x.into();
                     device.y = coord[idx].y.into();
                     device.z = coord[idx].z.into();
