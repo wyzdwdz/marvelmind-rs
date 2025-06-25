@@ -56,7 +56,7 @@ fn save_locations(rx: Receiver<DeviceList>, mut outfile: File) {
                 outfile
                     .write(
                         format!(
-                            "{};{};{};{};{};{}\n",
+                            "{},{},{},{},{},{}\n",
                             device.address(),
                             device.x(),
                             device.y(),
@@ -88,7 +88,7 @@ fn main() {
     let mut devices_list = mm::get_device_list().unwrap();
 
     let mut outfile = File::create(LOG_PATH).unwrap();
-    outfile.write("address;x;y;z;q;t\n".as_bytes()).unwrap();
+    outfile.write("address,x,y,z,q,t\n".as_bytes()).unwrap();
 
     let (tx, rx) = mpsc::channel();
 
