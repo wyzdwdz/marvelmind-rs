@@ -5,21 +5,21 @@
 // those terms.
 
 //! Marvelmind<sup>&copy;</sup> api wrapper
-//! 
+//!
 //! # Example
-//! 
+//!
 //! ```rust
 //! use marvelmind as mm;
-//! 
+//!
 //! let version = mm::api_version().unwrap();
 //! println!("api version: {}", version);
-//! 
+//!
 //! mm::open_port(30).unwrap();
 //! println!("open port successfully");
-//! 
+//!
 //! let mut devices_list = mm::get_device_list().unwrap();
 //! let _ = devices_list.update_last_locations().unwrap();
-//! 
+//!
 //! let devices = device_list.devices();
 //! for device in devices {
 //!     println!(
@@ -139,7 +139,7 @@ impl DeviceList {
     }
 
     /// Update the last locations of each Marvelmind<sup>&copy;</sup> device.
-    /// 
+    ///
     /// If one of locations is updated, return `true`; otherwise, return `false`.
     pub fn update_last_locations(&mut self) -> Result<bool, MMError> {
         let mut pdata = [0 as u8; mem::size_of::<MMLastLocations>()];
@@ -271,7 +271,7 @@ impl Device {
 }
 
 /// Marvelmind<sup>&copy;</sup> device type
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum DeviceType {
     /// Beacon HW V4.5
     BeaconHwV45,
@@ -356,11 +356,11 @@ pub fn api_version() -> Result<u32, MMError> {
     }
 }
 
-/// Opens port where Marvelmind<sup>&copy;</sup> device (modem or beacon) is connected via USB (virtual serial port). 
+/// Opens port where Marvelmind<sup>&copy;</sup> device (modem or beacon) is connected via USB (virtual serial port).
 /// You don’t need to specify serial port name, because the API searching all serial ports and checks whether it corresponds to Marvelmind device or no.
-/// 
+///
 /// # Arguments
-/// * `timeout` - Maximum wait time in seconds before aborting. 
+/// * `timeout` - Maximum wait time in seconds before aborting.
 ///   Note: A value of 0 will attempt exactly one opening attempt.
 pub fn open_port(timeout: u64) -> Result<(), MMError> {
     let t_start = Instant::now();
@@ -393,7 +393,7 @@ pub fn close_port() -> Result<(), MMError> {
     }
 }
 
-/// Reads list of Marvelmind<sup>&copy;</sup> devices known to modem. 
+/// Reads list of Marvelmind<sup>&copy;</sup> devices known to modem.
 /// The list includes list of all devices connected by radio to modem’s network, including sleeping devices.
 pub fn get_device_list() -> Result<DeviceList, MMError> {
     let mut pdata = [0 as u8; mem::size_of::<MMDeviceList>()];
