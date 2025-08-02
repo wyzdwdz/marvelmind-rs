@@ -68,6 +68,8 @@ pub enum MMError {
     UnknownError,
 }
 
+impl std::error::Error for MMError {}
+
 impl fmt::Display for MMError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
